@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zcy.rescue.passenger.dao.CarInfoMapper">
+	<resultMap id="CarInfoResultMap" type="com.zcy.rescue.passenger.entity.CarInfo"  >
+        <result column="id" property="id"/>
+        <result column="plate_number" property="plateNumber"/>
+        <result column="operation_status" property="operationStatus"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="full_name" property="fullName"/>
+        <result column="color" property="color"/>
+        <result column="car_img" property="carImg"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="is_new_energy" property="isNewEnergy"/>
+        <result column="car_type_id" property="carTypeId"/>
+        <result column="car_level_id" property="carLevelId"/>
+        <result column="regist_date" property="registDate"/>
+        <result column="insurance_start_date" property="insuranceStartDate"/>
+        <result column="insurance_end_date" property="insuranceEndDate"/>
+        <result column="annual_end_date" property="annualEndDate"/>
+        <result column="car_license_img" property="carLicenseImg"/>
+        <result column="is_free_order" property="isFreeOrder"/>
+        <result column="remark" property="remark"/>
+        <result column="use_status" property="useStatus"/>
+        <result column="large_screen_device_code" property="largeScreenDeviceCode"/>
+        <result column="large_screen_device_brand" property="largeScreenDeviceBrand"/>
+        <result column="car_screen_device_code" property="carScreenDeviceCode"/>
+        <result column="car_screen_device_brand" property="carScreenDeviceBrand"/>
+        <result column="operator_id" property="operatorId"/>
+        <result column="total_mile" property="totalMile"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+	</resultMap>
+
+	<sql id="columns">
+		id,
+		plate_number,
+		operation_status,
+		publish_time,
+		full_name,
+		color,
+		car_img,
+		city_code,
+		is_new_energy,
+		car_type_id,
+		car_level_id,
+		regist_date,
+		insurance_start_date,
+		insurance_end_date,
+		annual_end_date,
+		car_license_img,
+		is_free_order,
+		remark,
+		use_status,
+		large_screen_device_code,
+		large_screen_device_brand,
+		car_screen_device_code,
+		car_screen_device_brand,
+		operator_id,
+		total_mile,
+		create_time,
+		update_time
+	</sql>
+
+	<select id="getByPrimaryKey" parameterType="com.zcy.rescue.passenger.entity.CarInfo" resultMap="CarInfoResultMap">
+      select
+      <include refid="columns" />
+      from  tbl_car_info
+      where  
+	        id = #{id} 
+    </select>
+
+    <update id="deleteToUpdate" parameterType="com.zcy.rescue.passenger.vo.CarInfoVO">
+      update  tbl_car_info set delete_flag=1,update_id =#{updateId},update_name =#{updateName},update_time =#{updateTime} 
+      where   id in 
+		<foreach item="item" collection="idList" separator="," open="(" close=")" index="index"> 
+			#{item}
+		</foreach>
+    </update>
+	
+    <update id="updateBatchStatus" parameterType="com.zcy.rescue.passenger.vo.CarInfoVO">
+      update  tbl_car_info set status=#{status},update_id =#{updateId},update_name =#{updateName},update_time =#{updateTime} 
+      where   id in 
+		<foreach item="item" collection="idList" separator="," open="(" close=")" index="index"> 
+			#{item}
+		</foreach>
+    </update>
+
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into  tbl_car_info (
+        	id,
+        	plate_number,
+        	operation_status,
+        	publish_time,
+        	full_name,
+        	color,
+        	car_img,
+        	city_code,
+        	is_new_energy,
+        	car_type_id,
+        	car_level_id,
+        	regist_date,
+        	insurance_start_date,
+        	insurance_end_date,
+        	annual_end_date,
+        	car_license_img,
+        	is_free_order,
+        	remark,
+        	use_status,
+        	large_screen_device_code,
+        	large_screen_device_brand,
+        	car_screen_device_code,
+        	car_screen_device_brand,
+        	operator_id,
+        	total_mile,
+        	create_time,
+        	update_time
+		) values
+		<foreach collection="list" item="p" index="index" separator=",">
+			(
+        	#{p.id} ,
+        	#{p.plateNumber} ,
+        	#{p.operationStatus} ,
+        	#{p.publishTime} ,
+        	#{p.fullName} ,
+        	#{p.color} ,
+        	#{p.carImg} ,
+        	#{p.cityCode} ,
+        	#{p.isNewEnergy} ,
+        	#{p.carTypeId} ,
+        	#{p.carLevelId} ,
+        	#{p.registDate} ,
+        	#{p.insuranceStartDate} ,
+        	#{p.insuranceEndDate} ,
+        	#{p.annualEndDate} ,
+        	#{p.carLicenseImg} ,
+        	#{p.isFreeOrder} ,
+        	#{p.remark} ,
+        	#{p.useStatus} ,
+        	#{p.largeScreenDeviceCode} ,
+        	#{p.largeScreenDeviceBrand} ,
+        	#{p.carScreenDeviceCode} ,
+        	#{p.carScreenDeviceBrand} ,
+        	#{p.operatorId} ,
+        	#{p.totalMile} ,
+        	#{p.createTime} ,
+        	#{p.updateTime} 
+			)
+		</foreach>
+
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.zcy.rescue.passenger.entity.CarInfo">
+        insert into  tbl_car_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        	  id,
+          </if>
+          <if test="plateNumber != null">
+        	  plate_number,
+          </if>
+          <if test="operationStatus != null">
+        	  operation_status,
+          </if>
+          <if test="publishTime != null">
+        	  publish_time,
+          </if>
+          <if test="fullName != null">
+        	  full_name,
+          </if>
+          <if test="color != null">
+        	  color,
+          </if>
+          <if test="carImg != null">
+        	  car_img,
+          </if>
+          <if test="cityCode != null">
+        	  city_code,
+          </if>
+          <if test="isNewEnergy != null">
+        	  is_new_energy,
+          </if>
+          <if test="carTypeId != null">
+        	  car_type_id,
+          </if>
+          <if test="carLevelId != null">
+        	  car_level_id,
+          </if>
+          <if test="registDate != null">
+        	  regist_date,
+          </if>
+          <if test="insuranceStartDate != null">
+        	  insurance_start_date,
+          </if>
+          <if test="insuranceEndDate != null">
+        	  insurance_end_date,
+          </if>
+          <if test="annualEndDate != null">
+        	  annual_end_date,
+          </if>
+          <if test="carLicenseImg != null">
+        	  car_license_img,
+          </if>
+          <if test="isFreeOrder != null">
+        	  is_free_order,
+          </if>
+          <if test="remark != null">
+        	  remark,
+          </if>
+          <if test="useStatus != null">
+        	  use_status,
+          </if>
+          <if test="largeScreenDeviceCode != null">
+        	  large_screen_device_code,
+          </if>
+          <if test="largeScreenDeviceBrand != null">
+        	  large_screen_device_brand,
+          </if>
+          <if test="carScreenDeviceCode != null">
+        	  car_screen_device_code,
+          </if>
+          <if test="carScreenDeviceBrand != null">
+        	  car_screen_device_brand,
+          </if>
+          <if test="operatorId != null">
+        	  operator_id,
+          </if>
+          <if test="totalMile != null">
+        	  total_mile,
+          </if>
+          <if test="createTime != null">
+        	  create_time,
+          </if>
+          <if test="updateTime != null">
+        	  update_time,
+          </if>
+        </trim>
+         values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        	  #{id},
+          </if>
+          <if test="plateNumber != null">
+        	  #{plateNumber},
+          </if>
+          <if test="operationStatus != null">
+        	  #{operationStatus},
+          </if>
+          <if test="publishTime != null">
+        	  #{publishTime},
+          </if>
+          <if test="fullName != null">
+        	  #{fullName},
+          </if>
+          <if test="color != null">
+        	  #{color},
+          </if>
+          <if test="carImg != null">
+        	  #{carImg},
+          </if>
+          <if test="cityCode != null">
+        	  #{cityCode},
+          </if>
+          <if test="isNewEnergy != null">
+        	  #{isNewEnergy},
+          </if>
+          <if test="carTypeId != null">
+        	  #{carTypeId},
+          </if>
+          <if test="carLevelId != null">
+        	  #{carLevelId},
+          </if>
+          <if test="registDate != null">
+        	  #{registDate},
+          </if>
+          <if test="insuranceStartDate != null">
+        	  #{insuranceStartDate},
+          </if>
+          <if test="insuranceEndDate != null">
+        	  #{insuranceEndDate},
+          </if>
+          <if test="annualEndDate != null">
+        	  #{annualEndDate},
+          </if>
+          <if test="carLicenseImg != null">
+        	  #{carLicenseImg},
+          </if>
+          <if test="isFreeOrder != null">
+        	  #{isFreeOrder},
+          </if>
+          <if test="remark != null">
+        	  #{remark},
+          </if>
+          <if test="useStatus != null">
+        	  #{useStatus},
+          </if>
+          <if test="largeScreenDeviceCode != null">
+        	  #{largeScreenDeviceCode},
+          </if>
+          <if test="largeScreenDeviceBrand != null">
+        	  #{largeScreenDeviceBrand},
+          </if>
+          <if test="carScreenDeviceCode != null">
+        	  #{carScreenDeviceCode},
+          </if>
+          <if test="carScreenDeviceBrand != null">
+        	  #{carScreenDeviceBrand},
+          </if>
+          <if test="operatorId != null">
+        	  #{operatorId},
+          </if>
+          <if test="totalMile != null">
+        	  #{totalMile},
+          </if>
+          <if test="createTime != null">
+        	  #{createTime},
+          </if>
+          <if test="updateTime != null">
+        	  #{updateTime},
+          </if>
+        </trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.zcy.rescue.passenger.entity.CarInfo">
+	  update  tbl_car_info
+	  <set>
+            <if test="id != null">
+        	  id = #{id},
+            </if>
+            <if test="plateNumber != null">
+        	  plate_number = #{plateNumber},
+            </if>
+            <if test="operationStatus != null">
+        	  operation_status = #{operationStatus},
+            </if>
+            <if test="publishTime != null">
+        	  publish_time = #{publishTime},
+            </if>
+            <if test="fullName != null">
+        	  full_name = #{fullName},
+            </if>
+            <if test="color != null">
+        	  color = #{color},
+            </if>
+            <if test="carImg != null">
+        	  car_img = #{carImg},
+            </if>
+            <if test="cityCode != null">
+        	  city_code = #{cityCode},
+            </if>
+            <if test="isNewEnergy != null">
+        	  is_new_energy = #{isNewEnergy},
+            </if>
+            <if test="carTypeId != null">
+        	  car_type_id = #{carTypeId},
+            </if>
+            <if test="carLevelId != null">
+        	  car_level_id = #{carLevelId},
+            </if>
+            <if test="registDate != null">
+        	  regist_date = #{registDate},
+            </if>
+            <if test="insuranceStartDate != null">
+        	  insurance_start_date = #{insuranceStartDate},
+            </if>
+            <if test="insuranceEndDate != null">
+        	  insurance_end_date = #{insuranceEndDate},
+            </if>
+            <if test="annualEndDate != null">
+        	  annual_end_date = #{annualEndDate},
+            </if>
+            <if test="carLicenseImg != null">
+        	  car_license_img = #{carLicenseImg},
+            </if>
+            <if test="isFreeOrder != null">
+        	  is_free_order = #{isFreeOrder},
+            </if>
+            <if test="remark != null">
+        	  remark = #{remark},
+            </if>
+            <if test="useStatus != null">
+        	  use_status = #{useStatus},
+            </if>
+            <if test="largeScreenDeviceCode != null">
+        	  large_screen_device_code = #{largeScreenDeviceCode},
+            </if>
+            <if test="largeScreenDeviceBrand != null">
+        	  large_screen_device_brand = #{largeScreenDeviceBrand},
+            </if>
+            <if test="carScreenDeviceCode != null">
+        	  car_screen_device_code = #{carScreenDeviceCode},
+            </if>
+            <if test="carScreenDeviceBrand != null">
+        	  car_screen_device_brand = #{carScreenDeviceBrand},
+            </if>
+            <if test="operatorId != null">
+        	  operator_id = #{operatorId},
+            </if>
+            <if test="totalMile != null">
+        	  total_mile = #{totalMile},
+            </if>
+            <if test="createTime != null">
+        	  create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+        	  update_time = #{updateTime},
+            </if>
+	  </set>
+	  where  
+	        id = #{id} 
+	</update>
+
+	<select id="getList" resultMap="CarInfoResultMap"
+  			parameterType="com.zcy.rescue.passenger.vo.CarInfoVO">
+  	  select
+  	  <include refid="columns" />
+  	  from  tbl_car_info
+  	  <include refid="QueryBean_Where" />
+  	  order by
+        <trim prefixOverrides=",">
+            ,tbl_car_info.create_time  desc
+        </trim>
+	</select>
+
+	<select id="getPage" resultMap="CarInfoResultMap"
+  			parameterType="com.zcy.rescue.passenger.vo.CarInfoVO">
+  	  select
+  	  <include refid="columns" />
+  	  from  tbl_car_info
+  	  <include refid="QueryBean_Where" />
+  	  order by
+        <trim prefixOverrides=",">
+            ,create_time  desc
+        </trim>
+  	  limit #{pageStart}, #{pageSize}
+	</select>
+
+	<select id="getCount" resultType="java.lang.Integer"
+  			parameterType="com.zcy.rescue.passenger.vo.CarInfoVO">
+  	  select count(1) from  tbl_car_info
+  	  <include refid="QueryBean_Where" />
+	</select>
+
+	<sql id="QueryBean_Where">
+		<where>
+
+	       <if test="id !=null and id != ''">
+				and id = #{id}
+		   </if>
+	       <if test="plateNumber !=null and plateNumber != ''">
+				and plate_number = #{plateNumber}
+		   </if>
+	       <if test="operationStatus !=null and operationStatus != ''">
+				and operation_status = #{operationStatus}
+		   </if>
+	       <if test="publishTime !=null and publishTime != ''">
+				and publish_time = #{publishTime}
+		   </if>
+	       <if test="fullName !=null and fullName != ''">
+				and full_name = #{fullName}
+		   </if>
+	       <if test="color !=null and color != ''">
+				and color = #{color}
+		   </if>
+	       <if test="carImg !=null and carImg != ''">
+				and car_img = #{carImg}
+		   </if>
+	       <if test="cityCode !=null and cityCode != ''">
+				and city_code = #{cityCode}
+		   </if>
+	       <if test="isNewEnergy !=null and isNewEnergy != ''">
+				and is_new_energy = #{isNewEnergy}
+		   </if>
+	       <if test="carTypeId !=null and carTypeId != ''">
+				and car_type_id = #{carTypeId}
+		   </if>
+	       <if test="carLevelId !=null and carLevelId != ''">
+				and car_level_id = #{carLevelId}
+		   </if>
+	       <if test="registDate !=null and registDate != ''">
+				and regist_date = #{registDate}
+		   </if>
+	       <if test="insuranceStartDate !=null and insuranceStartDate != ''">
+				and insurance_start_date = #{insuranceStartDate}
+		   </if>
+	       <if test="insuranceEndDate !=null and insuranceEndDate != ''">
+				and insurance_end_date = #{insuranceEndDate}
+		   </if>
+	       <if test="annualEndDate !=null and annualEndDate != ''">
+				and annual_end_date = #{annualEndDate}
+		   </if>
+	       <if test="carLicenseImg !=null and carLicenseImg != ''">
+				and car_license_img = #{carLicenseImg}
+		   </if>
+	       <if test="isFreeOrder !=null and isFreeOrder != ''">
+				and is_free_order = #{isFreeOrder}
+		   </if>
+	       <if test="remark !=null and remark != ''">
+				and remark = #{remark}
+		   </if>
+	       <if test="useStatus !=null and useStatus != ''">
+				and use_status = #{useStatus}
+		   </if>
+	       <if test="largeScreenDeviceCode !=null and largeScreenDeviceCode != ''">
+				and large_screen_device_code = #{largeScreenDeviceCode}
+		   </if>
+	       <if test="largeScreenDeviceBrand !=null and largeScreenDeviceBrand != ''">
+				and large_screen_device_brand = #{largeScreenDeviceBrand}
+		   </if>
+	       <if test="carScreenDeviceCode !=null and carScreenDeviceCode != ''">
+				and car_screen_device_code = #{carScreenDeviceCode}
+		   </if>
+	       <if test="carScreenDeviceBrand !=null and carScreenDeviceBrand != ''">
+				and car_screen_device_brand = #{carScreenDeviceBrand}
+		   </if>
+	       <if test="operatorId !=null and operatorId != ''">
+				and operator_id = #{operatorId}
+		   </if>
+	       <if test="totalMile !=null and totalMile != ''">
+				and total_mile = #{totalMile}
+		   </if>
+	       <if test="createTime !=null and createTime != ''">
+				and create_time = #{createTime}
+		   </if>
+	       <if test="updateTime !=null and updateTime != ''">
+				and update_time = #{updateTime}
+		   </if>
+	       
+			<if test="statusList != null and statusList.size > 0">
+				and status in
+				<foreach item="item" collection="statusList" separator="," open="(" close=")" index="index">
+					#{item}
+				</foreach>
+			</if>
+			<if test="idList != null and idList.size > 0">
+				and id in
+				<foreach item="item" collection="idList" separator="," open="(" close=")" index="index">
+					#{item} 			
+				</foreach>
+			</if>
+
+
+
+			<if test="nameLike != null and nameLike != ''">
+				<![CDATA[ and name LIKE CONCAT('%', TRIM(#{nameLike}), '%')]]>
+			</if>
+
+			<if test="codeLike != null and codeLike != ''">
+				<![CDATA[ and code LIKE CONCAT('%', TRIM(#{codeLike}), '%')]]>
+			</if>
+		</where>
+	</sql>
+
+</mapper>
+
