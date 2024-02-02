@@ -30,13 +30,13 @@ public interface SysUserService {
      * @param sysUserVO 
      * @return
      */
-    int deleteToUpdate( SysUserVO sysUserVO);
+    int deleteToUpdate(SysUserVO sysUserVO);
 	/**
      * 根据主键批量更新状态
      * @param sysUserVO 
      * @return
      */
-    int updateBatchStatus( SysUserVO sysUserVO);
+    int updateBatchStatus(SysUserVO sysUserVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql

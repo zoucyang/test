@@ -30,13 +30,13 @@ public interface CarLevelService {
      * @param carLevelVO 车辆级别列表
      * @return
      */
-    int deleteToUpdate( CarLevelVO carLevelVO);
+    int deleteToUpdate(CarLevelVO carLevelVO);
 	/**
      * 根据主键批量更新状态
      * @param carLevelVO 车辆级别列表
      * @return
      */
-    int updateBatchStatus( CarLevelVO carLevelVO);
+    int updateBatchStatus(CarLevelVO carLevelVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql

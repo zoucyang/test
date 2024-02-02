@@ -30,13 +30,13 @@ public interface ServiceService {
      * @param serviceVO 
      * @return
      */
-    int deleteToUpdate( ServiceVO serviceVO);
+    int deleteToUpdate(ServiceVO serviceVO);
 	/**
      * 根据主键批量更新状态
      * @param serviceVO 
      * @return
      */
-    int updateBatchStatus( ServiceVO serviceVO);
+    int updateBatchStatus(ServiceVO serviceVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql

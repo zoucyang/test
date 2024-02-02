@@ -1,4 +1,4 @@
-package  com.zcy.rescue.passenger.common.enums;
+package com.zcy.rescue.passenger.common.enums;
 
 
 import com.zcy.rescue.passenger.common.domain.YestaeEnumModel;

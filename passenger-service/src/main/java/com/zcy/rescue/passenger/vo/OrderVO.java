@@ -140,12 +140,12 @@ public class OrderVO  extends ConditionVO<OrderVO,Serializable> {
 		 * 乘客下单时间
 		 */
 		@ApiModelProperty(value = "乘客下单时间")
-		private java.util.Date startTime;
+		private Date startTime;
 		/**
 		 * 订单开始时间
 		 */
 		@ApiModelProperty(value = "订单开始时间")
-		private java.util.Date orderStartTime;
+		private Date orderStartTime;
 		/**
 		 * 乘客下单终点经度
 		 */
@@ -160,17 +160,17 @@ public class OrderVO  extends ConditionVO<OrderVO,Serializable> {
 		 * 司机抢单时间
 		 */
 		@ApiModelProperty(value = "司机抢单时间")
-		private java.util.Date driverGrabTime;
+		private Date driverGrabTime;
 		/**
 		 * 司机去接乘客出发时间
 		 */
 		@ApiModelProperty(value = "司机去接乘客出发时间")
-		private java.util.Date driverStartTime;
+		private Date driverStartTime;
 		/**
 		 * 司机到达时间
 		 */
 		@ApiModelProperty(value = "司机到达时间")
-		private java.util.Date driverArrivedTime;
+		private Date driverArrivedTime;
 		/**
 		 * 去接乘客经度
 		 */
@@ -190,7 +190,7 @@ public class OrderVO  extends ConditionVO<OrderVO,Serializable> {
 		 * 接到乘客时间
 		 */
 		@ApiModelProperty(value = "接到乘客时间")
-		private java.util.Date receivePassengerTime;
+		private Date receivePassengerTime;
 		/**
 		 * 接到乘客经度
 		 */
@@ -205,7 +205,7 @@ public class OrderVO  extends ConditionVO<OrderVO,Serializable> {
 		 * 乘客下车时间
 		 */
 		@ApiModelProperty(value = "乘客下车时间")
-		private java.util.Date passengerGetoffTime;
+		private Date passengerGetoffTime;
 		/**
 		 * 乘客下车经度
 		 */
@@ -367,12 +367,12 @@ public class OrderVO  extends ConditionVO<OrderVO,Serializable> {
 		 * create_time
 		 */
 		@ApiModelProperty(value = "create_time")
-		private java.util.Date createTime;
+		private Date createTime;
 		/**
 		 * update_time
 		 */
 		@ApiModelProperty(value = "update_time")
-		private java.util.Date updateTime;
+		private Date updateTime;
 		/**
 		 * 1：儿童用车
 2：女性用车

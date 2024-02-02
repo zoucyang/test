@@ -97,7 +97,7 @@ public class DriverInfoDto  implements Serializable {
 	 * 绑定时间
 	 */
 	@ApiModelProperty(value = "绑定时间")
-	private java.util.Date bindTime;
+	private Date bindTime;
 	/**
 	 * 启用停用状态，0：停用，1：启用
 	 */
@@ -124,12 +124,12 @@ public class DriverInfoDto  implements Serializable {
 	 * 创建时间
 	 */
 	@ApiModelProperty(value = "创建时间")
-	private java.util.Date createTime;
+	private Date createTime;
 	/**
 	 * 修改时间
 	 */
 	@ApiModelProperty(value = "修改时间")
-	private java.util.Date updateTime;
+	private Date updateTime;
 
 
 }

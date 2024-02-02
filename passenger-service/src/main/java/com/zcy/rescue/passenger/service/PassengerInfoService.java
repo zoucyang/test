@@ -30,13 +30,13 @@ public interface PassengerInfoService {
      * @param passengerInfoVO 
      * @return
      */
-    int deleteToUpdate( PassengerInfoVO passengerInfoVO);
+    int deleteToUpdate(PassengerInfoVO passengerInfoVO);
 	/**
      * 根据主键批量更新状态
      * @param passengerInfoVO 
      * @return
      */
-    int updateBatchStatus( PassengerInfoVO passengerInfoVO);
+    int updateBatchStatus(PassengerInfoVO passengerInfoVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql

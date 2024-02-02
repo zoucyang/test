@@ -30,13 +30,13 @@ public interface OrderService {
      * @param orderVO 订单表
      * @return
      */
-    int deleteToUpdate( OrderVO orderVO);
+    int deleteToUpdate(OrderVO orderVO);
 	/**
      * 根据主键批量更新状态
      * @param orderVO 订单表
      * @return
      */
-    int updateBatchStatus( OrderVO orderVO);
+    int updateBatchStatus(OrderVO orderVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql

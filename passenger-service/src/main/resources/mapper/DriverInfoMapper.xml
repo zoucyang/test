@@ -299,11 +299,7 @@
   	  select
   	  <include refid="columns" />
   	  from  tbl_driver_info
-  	  <include refid="QueryBean_Where" />
-  	  order by
-        <trim prefixOverrides=",">
-            ,tbl_driver_info.create_time  desc
-        </trim>
+
 	</select>
 
 	<select id="getPage" resultMap="DriverInfoResultMap"

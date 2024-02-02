@@ -30,13 +30,13 @@ public interface DriverInfoService {
      * @param driverInfoVO 司机信息表
      * @return
      */
-    int deleteToUpdate( DriverInfoVO driverInfoVO);
+    int deleteToUpdate(DriverInfoVO driverInfoVO);
 	/**
      * 根据主键批量更新状态
      * @param driverInfoVO 司机信息表
      * @return
      */
-    int updateBatchStatus( DriverInfoVO driverInfoVO);
+    int updateBatchStatus(DriverInfoVO driverInfoVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql

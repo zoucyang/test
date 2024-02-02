@@ -30,13 +30,13 @@ public interface CarTypeService {
      * @param carTypeVO 
      * @return
      */
-    int deleteToUpdate( CarTypeVO carTypeVO);
+    int deleteToUpdate(CarTypeVO carTypeVO);
 	/**
      * 根据主键批量更新状态
      * @param carTypeVO 
      * @return
      */
-    int updateBatchStatus( CarTypeVO carTypeVO);
+    int updateBatchStatus(CarTypeVO carTypeVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql

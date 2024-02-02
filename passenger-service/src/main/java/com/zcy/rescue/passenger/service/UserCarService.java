@@ -30,13 +30,13 @@ public interface UserCarService {
      * @param userCarVO 用户车辆关系表
      * @return
      */
-    int deleteToUpdate( UserCarVO userCarVO);
+    int deleteToUpdate(UserCarVO userCarVO);
 	/**
      * 根据主键批量更新状态
      * @param userCarVO 用户车辆关系表
      * @return
      */
-    int updateBatchStatus( UserCarVO userCarVO);
+    int updateBatchStatus(UserCarVO userCarVO);
 
     /**
      * 插入实体信息，只有当字段有值时，才会构建sql
