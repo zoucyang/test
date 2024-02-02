@@ -1,0 +1,13 @@
+https://developers.weixin.qq.com/miniprogram/dev/OpenApiDoc/user-login/code2Session.html
+
+appid: wxb8bbd66afda2d434
+secret: 60d14a110555d486bcdc341778332793
+商户id: 1667296939
+
+商户序列号操作密码:  240202
+支付商户
+序列号：3C0C82AFDD1DCB561DD32BD286E4253EC7DD73B2 
+
+APLv2秘钥：bYykLipU0IgCC9aFJVHJCo9TsxUWty2z
+
+APLv3秘钥：bYykLipU0IgCC9aFJVHJCo9TsxUWty2z
