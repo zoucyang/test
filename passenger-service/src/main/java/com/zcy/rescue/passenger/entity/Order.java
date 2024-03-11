@@ -69,7 +69,7 @@ public class Order implements Serializable {
      * 司机状态
      * 0：没有司机接单
      * 1：司机接单
-     * 2.  去接乘客
+     * 2: 去接乘客
      * 3：司机到达上车点
      * 4：开始行程
      * 5：结束行程

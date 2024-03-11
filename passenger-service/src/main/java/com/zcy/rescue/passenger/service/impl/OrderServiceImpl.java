@@ -115,7 +115,7 @@ public class OrderServiceImpl implements OrderService {
 	 * 生成分布式ID并赋值
 	 * @param entity 实体对象
 	 */
-	public void createId(Order entity,long millis) {
+	public void createId(Order entity, long millis) {
 		//创建人
 		//entity.setCreateTime(millis);
 		//entity.setCreateId(BizUserUtil.getUserID())
@@ -123,6 +123,7 @@ public class OrderServiceImpl implements OrderService {
 		//		.setDeleteFlag(BooleanEnum.NO.getValue());
 		////生成分布式id
 		//entity.setId(entity.getId()==null? SnowflakeIdWorker.nextId():entity.getId());
+		entity.setId(entity.getId()==null? millis:entity.getId());
 		////修改人
 		//entity.setUpdateTime(millis);
 		//entity.setUpdateId(BizUserUtil.getUserID())
@@ -133,7 +134,7 @@ public class OrderServiceImpl implements OrderService {
 	 * 更新实体赋值通用属性
 	 * @param entity 实体对象
 	 */
-	public void updateInfo(Order entity,long millis) {
+	public void updateInfo(Order entity, long millis) {
 		//修改人
 		//entity.setUpdateTime(millis);
 		//entity.setUpdateId(BizUserUtil.getUserID())

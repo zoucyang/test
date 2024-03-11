@@ -4,7 +4,7 @@
  * Since 2019
  */
 
-package com.zcy.rescue.passenger.controller;
+package com.zcy.rescue.passenger.controller.managers;
  
 import java.util.List; 
  
@@ -13,11 +13,10 @@ import com.zcy.rescue.passenger.common.domain.PageResult;
 import com.zcy.rescue.passenger.common.exceptions.SystemException;
 import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
-import com.zcy.rescue.passenger.dto.OrderDto;
+import com.zcy.rescue.passenger.controller.passenger.vo.PassengerOrderVO;
 import com.zcy.rescue.passenger.entity.Order;
 import com.zcy.rescue.passenger.enums.OrderErrorCodeEnum;
 import com.zcy.rescue.passenger.service.OrderService;
-import com.zcy.rescue.passenger.vo.OrderVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -33,8 +32,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * 订单表的Rest实现
- * 
+ * 管理端/订单表的Rest实现
+ *
  * @author zcy
  * @date 2024-1-28
  */
@@ -53,14 +52,14 @@ public class OrderController {
 	
     @PostMapping(value="/save", produces="application/json")
 	
-    public DataResult<OrderDto> save(@RequestBody OrderVO orderVO) {
+    public DataResult<PassengerOrderVO> save(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的save order={}", JsonUtil.toJson(orderVO));
         Order order = new Order();
 		BeanUtil.copyProperties(orderVO, order);
         order = orderService.insertSelective(order);
         logger.debug("订单表的save result={}",JsonUtil.toJson(order));
 		if(order != null){
-			OrderDto orderDto = new OrderDto();
+			PassengerOrderVO orderDto = new PassengerOrderVO();
 			BeanUtil.copyProperties(order, orderDto);
 			return DataResult.success(orderDto);
 		}
@@ -70,14 +69,14 @@ public class OrderController {
     
 	
     @PostMapping(value="/update", produces="application/json")
-    public DataResult<OrderDto> update(@RequestBody OrderVO orderVO) {
+    public DataResult<PassengerOrderVO> update(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的update order={}", JsonUtil.toJson(orderVO));
         Order order = new Order();
 		BeanUtil.copyProperties(orderVO, order);
         order = orderService.updateByPrimaryKeySelective(order);
         logger.debug("订单表的update result={}",JsonUtil.toJson(order));
 		if(order != null){
-			OrderDto orderDto = new OrderDto();
+			PassengerOrderVO orderDto = new PassengerOrderVO();
 			BeanUtil.copyProperties(order, orderDto);
 			return DataResult.success(orderDto);
 		}
@@ -90,7 +89,7 @@ public class OrderController {
      */
     @ApiOperation("根据主键删除记录(逻辑删除)")
     @PostMapping(value="/delete", produces="application/json")
-    public DataResult<OrderVO> delete(@RequestBody OrderVO orderVO) {
+    public DataResult<com.zcy.rescue.passenger.vo.OrderVO> delete(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的delete order={}", JsonUtil.toJson(orderVO));
         Order order = new Order();
         BeanUtil.copyProperties(orderVO, order);
@@ -109,7 +108,7 @@ public class OrderController {
      */
 	@ApiOperation("根据主键批量删除记录(逻辑删除),idList必须传值")
     @PostMapping(value="/deleteBatch", produces="application/json")
-    public DataResult<OrderVO> deleteBatch(@RequestBody OrderVO orderVO) {
+    public DataResult<com.zcy.rescue.passenger.vo.OrderVO> deleteBatch(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的deleteBatch order={}", JsonUtil.toJson(orderVO)); 
         int result = orderService.deleteToUpdate(orderVO);
         logger.debug("订单表的deleteBatch result={}",result); 
@@ -126,7 +125,7 @@ public class OrderController {
      */
 	@ApiOperation("根据主键批量更新状态,idList必须传值")
     @PostMapping(value="/updateBatchStatus", produces="application/json")
-    public DataResult<OrderVO> updateBatchStatus(@RequestBody OrderVO orderVO) {
+    public DataResult<com.zcy.rescue.passenger.vo.OrderVO> updateBatchStatus(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的updateBatchStatus order={}", JsonUtil.toJson(orderVO)); 
         int result = orderService.updateBatchStatus(orderVO);
         logger.debug("订单表的updateBatchStatus result={}",result); 
@@ -156,45 +155,45 @@ public class OrderController {
     }
 	
     @PostMapping(value="/get", produces="application/json")
-    public DataResult<OrderDto> get (@RequestBody OrderVO orderVO) {
+    public DataResult<PassengerOrderVO> get (@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
 		logger.debug("订单表的get orderVO={}",JsonUtil.toJson(orderVO));
         Order order = new Order();
         BeanUtil.copyProperties(orderVO, order);
 		order = orderService.getByPrimaryKey(order);
 		logger.debug("订单表的get result={}", order);
-		OrderDto orderDto = new OrderDto();
+		PassengerOrderVO orderDto = new PassengerOrderVO();
 		BeanUtil.copyProperties(order, orderDto);
 		return DataResult.success(orderDto);
     }
     
 	
     @PostMapping(value="/getList", produces="application/json")
-    public DataResult<List<OrderDto>> getList(@RequestBody OrderVO orderVO) {
+    public DataResult<List<PassengerOrderVO>> getList(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的getList orderVO={}",JsonUtil.toJson( orderVO));
         List<Order> orderList = orderService.getList(orderVO);
-		List<OrderDto> orderDtoList = BeanUtil.copyList(orderList, OrderDto.class); 
+		List<PassengerOrderVO> orderDtoList = BeanUtil.copyList(orderList, PassengerOrderVO.class);
 		return DataResult.success(orderDtoList);
     }
     
     
     @PostMapping(value="/getPage", produces="application/json")
-    public PageResult<OrderDto> getPage(@RequestBody OrderVO  orderVO) {
+    public PageResult<PassengerOrderVO> getPage(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的getListWithPage orderVO={}", JsonUtil.toJson( orderVO));
 		
 		int count = orderService.getCount(orderVO);
         if (count < 1) {
             return PageResult.empty();
         }
-        List<Order> orderList = orderService.getPage(orderVO); 
-		List<OrderDto> orderDtoList =BeanUtil.copyList(orderList, OrderDto.class); 
-        PageResult<OrderDto> orderDtoPageResult = PageResult.page(orderVO,count,orderDtoList);
+        List<Order> orderList = orderService.getPage(orderVO);
+		List<PassengerOrderVO> orderDtoList =BeanUtil.copyList(orderList, PassengerOrderVO.class);
+        PageResult<PassengerOrderVO> orderDtoPageResult = PageResult.page(orderVO,count,orderDtoList);
 		return orderDtoPageResult;
     }
     
     
 	
     @PostMapping(value="/count", produces="application/json")
-    public DataResult<Integer> getCount(@RequestBody OrderVO orderVO) {
+    public DataResult<Integer> getCount(@RequestBody com.zcy.rescue.passenger.vo.OrderVO orderVO) {
         logger.debug("订单表的getCount orderVO={}", JsonUtil.toJson(orderVO));
         int count = orderService.getCount(orderVO);
         logger.debug("订单表的getCount count={}", count);

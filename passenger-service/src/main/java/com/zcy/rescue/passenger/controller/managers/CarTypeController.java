@@ -4,7 +4,7 @@
  * Since 2019
  */
 
-package com.zcy.rescue.passenger.controller;
+package com.zcy.rescue.passenger.controller.managers;
  
 import java.util.List; 
  
@@ -33,8 +33,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * 的Rest实现
- * 
+ * 管理端/车辆类型的Rest实现
+ *
  * @author zcy
  * @date 2024-1-28
  */

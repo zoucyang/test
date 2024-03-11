@@ -4,10 +4,8 @@
  * Since 2019
  */
 
-package com.zcy.rescue.passenger.controller;
- 
-import java.util.List; 
- 
+package com.zcy.rescue.passenger.controller.managers;
+
 import com.zcy.rescue.passenger.common.domain.DataResult;
 import com.zcy.rescue.passenger.common.domain.PageResult;
 import com.zcy.rescue.passenger.common.exceptions.SystemException;
@@ -21,29 +19,29 @@ import com.zcy.rescue.passenger.vo.DriverInfoVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory; 
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 /**
- * 司机信息表的Rest实现
- * 
+ * 管理端/司机信息表的Rest实现
+ *
  * @author zcy
  * @date 2024-1-28
  */
  @Api(tags = "司机信息表的Rest实现")
 @RestController
-@RequestMapping("/driverInfo")
-public class DriverInfoController {
+@RequestMapping("/driver")
+public class DriverController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(DriverInfoController.class);
+	private static final Logger logger = LoggerFactory.getLogger(DriverController.class);
 
     /**
      * 注入的司机信息表的Service接口实现

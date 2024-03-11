@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @ApiModel(description = "订单表")
 @Data
 @Accessors(chain = true)
-public class OrderVO  extends ConditionVO<OrderVO,Serializable> {
+public class OrderVO extends ConditionVO<OrderVO,Serializable> {
 
     private static final long serialVersionUID = -1706430629021L;
 
