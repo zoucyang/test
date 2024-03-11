@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zcy.rescue.passenger.dao.CarTypeMapper">
+	<resultMap id="CarTypeResultMap" type="com.zcy.rescue.passenger.entity.CarType"  >
+        <result column="id" property="id"/>
+        <result column="brand" property="brand"/>
+        <result column="model" property="model"/>
+        <result column="seats" property="seats"/>
+        <result column="city" property="city"/>
+        <result column="type_desc" property="typeDesc"/>
+        <result column="img_url" property="imgUrl"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="operator_id" property="operatorId"/>
+	</resultMap>
+
+	<sql id="columns">
+		id,
+		brand,
+		model,
+		seats,
+		city,
+		type_desc,
+		img_url,
+		status,
+		create_time,
+		update_time,
+		operator_id
+	</sql>
+
+	<select id="getByPrimaryKey" parameterType="com.zcy.rescue.passenger.entity.CarType" resultMap="CarTypeResultMap">
+      select
+      <include refid="columns" />
+      from  tbl_car_type
+      where  
+	        id = #{id} 
+    </select>
+
+    <update id="deleteToUpdate" parameterType="com.zcy.rescue.passenger.vo.CarTypeVO">
+      update  tbl_car_type set delete_flag=1,update_id =#{updateId},update_name =#{updateName},update_time =#{updateTime} 
+      where   id in 
+		<foreach item="item" collection="idList" separator="," open="(" close=")" index="index"> 
+			#{item}
+		</foreach>
+    </update>
+	
+    <update id="updateBatchStatus" parameterType="com.zcy.rescue.passenger.vo.CarTypeVO">
+      update  tbl_car_type set status=#{status},update_id =#{updateId},update_name =#{updateName},update_time =#{updateTime} 
+      where   id in 
+		<foreach item="item" collection="idList" separator="," open="(" close=")" index="index"> 
+			#{item}
+		</foreach>
+    </update>
+
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into  tbl_car_type (
+        	id,
+        	brand,
+        	model,
+        	seats,
+        	city,
+        	type_desc,
+        	img_url,
+        	status,
+        	create_time,
+        	update_time,
+        	operator_id
+		) values
+		<foreach collection="list" item="p" index="index" separator=",">
+			(
+        	#{p.id} ,
+        	#{p.brand} ,
+        	#{p.model} ,
+        	#{p.seats} ,
+        	#{p.city} ,
+        	#{p.typeDesc} ,
+        	#{p.imgUrl} ,
+        	#{p.status} ,
+        	#{p.createTime} ,
+        	#{p.updateTime} ,
+        	#{p.operatorId} 
+			)
+		</foreach>
+
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.zcy.rescue.passenger.entity.CarType">
+        insert into  tbl_car_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        	  id,
+          </if>
+          <if test="brand != null">
+        	  brand,
+          </if>
+          <if test="model != null">
+        	  model,
+          </if>
+          <if test="seats != null">
+        	  seats,
+          </if>
+          <if test="city != null">
+        	  city,
+          </if>
+          <if test="typeDesc != null">
+        	  type_desc,
+          </if>
+          <if test="imgUrl != null">
+        	  img_url,
+          </if>
+          <if test="status != null">
+        	  status,
+          </if>
+          <if test="createTime != null">
+        	  create_time,
+          </if>
+          <if test="updateTime != null">
+        	  update_time,
+          </if>
+          <if test="operatorId != null">
+        	  operator_id,
+          </if>
+        </trim>
+         values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        	  #{id},
+          </if>
+          <if test="brand != null">
+        	  #{brand},
+          </if>
+          <if test="model != null">
+        	  #{model},
+          </if>
+          <if test="seats != null">
+        	  #{seats},
+          </if>
+          <if test="city != null">
+        	  #{city},
+          </if>
+          <if test="typeDesc != null">
+        	  #{typeDesc},
+          </if>
+          <if test="imgUrl != null">
+        	  #{imgUrl},
+          </if>
+          <if test="status != null">
+        	  #{status},
+          </if>
+          <if test="createTime != null">
+        	  #{createTime},
+          </if>
+          <if test="updateTime != null">
+        	  #{updateTime},
+          </if>
+          <if test="operatorId != null">
+        	  #{operatorId},
+          </if>
+        </trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.zcy.rescue.passenger.entity.CarType">
+	  update  tbl_car_type
+	  <set>
+            <if test="id != null">
+        	  id = #{id},
+            </if>
+            <if test="brand != null">
+        	  brand = #{brand},
+            </if>
+            <if test="model != null">
+        	  model = #{model},
+            </if>
+            <if test="seats != null">
+        	  seats = #{seats},
+            </if>
+            <if test="city != null">
+        	  city = #{city},
+            </if>
+            <if test="typeDesc != null">
+        	  type_desc = #{typeDesc},
+            </if>
+            <if test="imgUrl != null">
+        	  img_url = #{imgUrl},
+            </if>
+            <if test="status != null">
+        	  status = #{status},
+            </if>
+            <if test="createTime != null">
+        	  create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+        	  update_time = #{updateTime},
+            </if>
+            <if test="operatorId != null">
+        	  operator_id = #{operatorId},
+            </if>
+	  </set>
+	  where  
+	        id = #{id} 
+	</update>
+
+	<select id="getList" resultMap="CarTypeResultMap"
+  			parameterType="com.zcy.rescue.passenger.vo.CarTypeVO">
+  	  select
+  	  <include refid="columns" />
+  	  from  tbl_car_type
+  	  <include refid="QueryBean_Where" />
+  	  order by
+        <trim prefixOverrides=",">
+            ,tbl_car_type.create_time  desc
+        </trim>
+	</select>
+
+	<select id="getPage" resultMap="CarTypeResultMap"
+  			parameterType="com.zcy.rescue.passenger.vo.CarTypeVO">
+  	  select
+  	  <include refid="columns" />
+  	  from  tbl_car_type
+  	  <include refid="QueryBean_Where" />
+  	  order by
+        <trim prefixOverrides=",">
+            ,create_time  desc
+        </trim>
+  	  limit #{pageStart}, #{pageSize}
+	</select>
+
+	<select id="getCount" resultType="java.lang.Integer"
+  			parameterType="com.zcy.rescue.passenger.vo.CarTypeVO">
+  	  select count(1) from  tbl_car_type
+  	  <include refid="QueryBean_Where" />
+	</select>
+
+	<sql id="QueryBean_Where">
+		<where>
+
+	       <if test="id !=null and id != ''">
+				and id = #{id}
+		   </if>
+	       <if test="brand !=null and brand != ''">
+				and brand = #{brand}
+		   </if>
+	       <if test="model !=null and model != ''">
+				and model = #{model}
+		   </if>
+	       <if test="seats !=null and seats != ''">
+				and seats = #{seats}
+		   </if>
+	       <if test="city !=null and city != ''">
+				and city = #{city}
+		   </if>
+	       <if test="typeDesc !=null and typeDesc != ''">
+				and type_desc = #{typeDesc}
+		   </if>
+	       <if test="imgUrl !=null and imgUrl != ''">
+				and img_url = #{imgUrl}
+		   </if>
+	       <if test="status !=null and status != ''">
+				and status = #{status}
+		   </if>
+	       <if test="createTime !=null and createTime != ''">
+				and create_time = #{createTime}
+		   </if>
+	       <if test="updateTime !=null and updateTime != ''">
+				and update_time = #{updateTime}
+		   </if>
+	       <if test="operatorId !=null and operatorId != ''">
+				and operator_id = #{operatorId}
+		   </if>
+	       
+			<if test="statusList != null and statusList.size > 0">
+				and status in
+				<foreach item="item" collection="statusList" separator="," open="(" close=")" index="index">
+					#{item}
+				</foreach>
+			</if>
+			<if test="idList != null and idList.size > 0">
+				and id in
+				<foreach item="item" collection="idList" separator="," open="(" close=")" index="index">
+					#{item} 			
+				</foreach>
+			</if>
+
+
+
+			<if test="nameLike != null and nameLike != ''">
+				<![CDATA[ and name LIKE CONCAT('%', TRIM(#{nameLike}), '%')]]>
+			</if>
+
+			<if test="codeLike != null and codeLike != ''">
+				<![CDATA[ and code LIKE CONCAT('%', TRIM(#{codeLike}), '%')]]>
+			</if>
+		</where>
+	</sql>
+
+</mapper>
+
