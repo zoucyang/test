@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.zcy.rescue.passenger.dao.DriverInfoMapper">
+	<resultMap id="DriverInfoResultMap" type="com.zcy.rescue.passenger.entity.DriverInfo"  >
+        <result column="id" property="id"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="driver_leader" property="driverLeader"/>
+        <result column="driver_name" property="driverName"/>
+        <result column="register_time" property="registerTime"/>
+        <result column="balance" property="balance"/>
+        <result column="gender" property="gender"/>
+        <result column="car_id" property="carId"/>
+        <result column="is_following" property="isFollowing"/>
+        <result column="work_status" property="workStatus"/>
+        <result column="head_img" property="headImg"/>
+        <result column="city_code" property="cityCode"/>
+        <result column="bind_time" property="bindTime"/>
+        <result column="use_status" property="useStatus"/>
+        <result column="cs_work_status" property="csWorkStatus"/>
+        <result column="sign_status" property="signStatus"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+	</resultMap>
+
+	<sql id="columns">
+		id,
+		phone_number,
+		driver_leader,
+		driver_name,
+		register_time,
+		balance,
+		gender,
+		car_id,
+		is_following,
+		work_status,
+		head_img,
+		city_code,
+		bind_time,
+		use_status,
+		cs_work_status,
+		sign_status,
+		create_time,
+		update_time
+	</sql>
+
+	<select id="getByPrimaryKey" parameterType="com.zcy.rescue.passenger.entity.DriverInfo" resultMap="DriverInfoResultMap">
+      select
+      <include refid="columns" />
+      from  tbl_driver_info
+      where  
+	        id = #{id} 
+    </select>
+
+    <update id="deleteToUpdate" parameterType="com.zcy.rescue.passenger.vo.DriverInfoVO">
+      update  tbl_driver_info set delete_flag=1,update_id =#{updateId},update_name =#{updateName},update_time =#{updateTime} 
+      where   id in 
+		<foreach item="item" collection="idList" separator="," open="(" close=")" index="index"> 
+			#{item}
+		</foreach>
+    </update>
+	
+    <update id="updateBatchStatus" parameterType="com.zcy.rescue.passenger.vo.DriverInfoVO">
+      update  tbl_driver_info set status=#{status},update_id =#{updateId},update_name =#{updateName},update_time =#{updateTime} 
+      where   id in 
+		<foreach item="item" collection="idList" separator="," open="(" close=")" index="index"> 
+			#{item}
+		</foreach>
+    </update>
+
+	<insert id="insertBatch" parameterType="java.util.List">
+		insert into  tbl_driver_info (
+        	id,
+        	phone_number,
+        	driver_leader,
+        	driver_name,
+        	register_time,
+        	balance,
+        	gender,
+        	car_id,
+        	is_following,
+        	work_status,
+        	head_img,
+        	city_code,
+        	bind_time,
+        	use_status,
+        	cs_work_status,
+        	sign_status,
+        	create_time,
+        	update_time
+		) values
+		<foreach collection="list" item="p" index="index" separator=",">
+			(
+        	#{p.id} ,
+        	#{p.phoneNumber} ,
+        	#{p.driverLeader} ,
+        	#{p.driverName} ,
+        	#{p.registerTime} ,
+        	#{p.balance} ,
+        	#{p.gender} ,
+        	#{p.carId} ,
+        	#{p.isFollowing} ,
+        	#{p.workStatus} ,
+        	#{p.headImg} ,
+        	#{p.cityCode} ,
+        	#{p.bindTime} ,
+        	#{p.useStatus} ,
+        	#{p.csWorkStatus} ,
+        	#{p.signStatus} ,
+        	#{p.createTime} ,
+        	#{p.updateTime} 
+			)
+		</foreach>
+
+	</insert>
+
+	<insert id="insertSelective" parameterType="com.zcy.rescue.passenger.entity.DriverInfo">
+        insert into  tbl_driver_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        	  id,
+          </if>
+          <if test="phoneNumber != null">
+        	  phone_number,
+          </if>
+          <if test="driverLeader != null">
+        	  driver_leader,
+          </if>
+          <if test="driverName != null">
+        	  driver_name,
+          </if>
+          <if test="registerTime != null">
+        	  register_time,
+          </if>
+          <if test="balance != null">
+        	  balance,
+          </if>
+          <if test="gender != null">
+        	  gender,
+          </if>
+          <if test="carId != null">
+        	  car_id,
+          </if>
+          <if test="isFollowing != null">
+        	  is_following,
+          </if>
+          <if test="workStatus != null">
+        	  work_status,
+          </if>
+          <if test="headImg != null">
+        	  head_img,
+          </if>
+          <if test="cityCode != null">
+        	  city_code,
+          </if>
+          <if test="bindTime != null">
+        	  bind_time,
+          </if>
+          <if test="useStatus != null">
+        	  use_status,
+          </if>
+          <if test="csWorkStatus != null">
+        	  cs_work_status,
+          </if>
+          <if test="signStatus != null">
+        	  sign_status,
+          </if>
+          <if test="createTime != null">
+        	  create_time,
+          </if>
+          <if test="updateTime != null">
+        	  update_time,
+          </if>
+        </trim>
+         values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+          <if test="id != null">
+        	  #{id},
+          </if>
+          <if test="phoneNumber != null">
+        	  #{phoneNumber},
+          </if>
+          <if test="driverLeader != null">
+        	  #{driverLeader},
+          </if>
+          <if test="driverName != null">
+        	  #{driverName},
+          </if>
+          <if test="registerTime != null">
+        	  #{registerTime},
+          </if>
+          <if test="balance != null">
+        	  #{balance},
+          </if>
+          <if test="gender != null">
+        	  #{gender},
+          </if>
+          <if test="carId != null">
+        	  #{carId},
+          </if>
+          <if test="isFollowing != null">
+        	  #{isFollowing},
+          </if>
+          <if test="workStatus != null">
+        	  #{workStatus},
+          </if>
+          <if test="headImg != null">
+        	  #{headImg},
+          </if>
+          <if test="cityCode != null">
+        	  #{cityCode},
+          </if>
+          <if test="bindTime != null">
+        	  #{bindTime},
+          </if>
+          <if test="useStatus != null">
+        	  #{useStatus},
+          </if>
+          <if test="csWorkStatus != null">
+        	  #{csWorkStatus},
+          </if>
+          <if test="signStatus != null">
+        	  #{signStatus},
+          </if>
+          <if test="createTime != null">
+        	  #{createTime},
+          </if>
+          <if test="updateTime != null">
+        	  #{updateTime},
+          </if>
+        </trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.zcy.rescue.passenger.entity.DriverInfo">
+	  update  tbl_driver_info
+	  <set>
+            <if test="id != null">
+        	  id = #{id},
+            </if>
+            <if test="phoneNumber != null">
+        	  phone_number = #{phoneNumber},
+            </if>
+            <if test="driverLeader != null">
+        	  driver_leader = #{driverLeader},
+            </if>
+            <if test="driverName != null">
+        	  driver_name = #{driverName},
+            </if>
+            <if test="registerTime != null">
+        	  register_time = #{registerTime},
+            </if>
+            <if test="balance != null">
+        	  balance = #{balance},
+            </if>
+            <if test="gender != null">
+        	  gender = #{gender},
+            </if>
+            <if test="carId != null">
+        	  car_id = #{carId},
+            </if>
+            <if test="isFollowing != null">
+        	  is_following = #{isFollowing},
+            </if>
+            <if test="workStatus != null">
+        	  work_status = #{workStatus},
+            </if>
+            <if test="headImg != null">
+        	  head_img = #{headImg},
+            </if>
+            <if test="cityCode != null">
+        	  city_code = #{cityCode},
+            </if>
+            <if test="bindTime != null">
+        	  bind_time = #{bindTime},
+            </if>
+            <if test="useStatus != null">
+        	  use_status = #{useStatus},
+            </if>
+            <if test="csWorkStatus != null">
+        	  cs_work_status = #{csWorkStatus},
+            </if>
+            <if test="signStatus != null">
+        	  sign_status = #{signStatus},
+            </if>
+            <if test="createTime != null">
+        	  create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+        	  update_time = #{updateTime},
+            </if>
+	  </set>
+	  where  
+	        id = #{id} 
+	</update>
+
+	<select id="getList" resultMap="DriverInfoResultMap"
+  			parameterType="com.zcy.rescue.passenger.vo.DriverInfoVO">
+  	  select
+  	  <include refid="columns" />
+  	  from  tbl_driver_info
+
+	</select>
+
+	<select id="getPage" resultMap="DriverInfoResultMap"
+  			parameterType="com.zcy.rescue.passenger.vo.DriverInfoVO">
+  	  select
+  	  <include refid="columns" />
+  	  from  tbl_driver_info
+  	  <include refid="QueryBean_Where" />
+  	  order by
+        <trim prefixOverrides=",">
+            ,create_time  desc
+        </trim>
+  	  limit #{pageStart}, #{pageSize}
+	</select>
+
+	<select id="getCount" resultType="java.lang.Integer"
+  			parameterType="com.zcy.rescue.passenger.vo.DriverInfoVO">
+  	  select count(1) from  tbl_driver_info
+  	  <include refid="QueryBean_Where" />
+	</select>
+
+	<sql id="QueryBean_Where">
+		<where>
+
+	       <if test="id !=null and id != ''">
+				and id = #{id}
+		   </if>
+	       <if test="phoneNumber !=null and phoneNumber != ''">
+				and phone_number = #{phoneNumber}
+		   </if>
+	       <if test="driverLeader !=null and driverLeader != ''">
+				and driver_leader = #{driverLeader}
+		   </if>
+	       <if test="driverName !=null and driverName != ''">
+				and driver_name = #{driverName}
+		   </if>
+	       <if test="registerTime !=null and registerTime != ''">
+				and register_time = #{registerTime}
+		   </if>
+	       <if test="balance !=null and balance != ''">
+				and balance = #{balance}
+		   </if>
+	       <if test="gender !=null and gender != ''">
+				and gender = #{gender}
+		   </if>
+	       <if test="carId !=null and carId != ''">
+				and car_id = #{carId}
+		   </if>
+	       <if test="isFollowing !=null and isFollowing != ''">
+				and is_following = #{isFollowing}
+		   </if>
+	       <if test="workStatus !=null and workStatus != ''">
+				and work_status = #{workStatus}
+		   </if>
+	       <if test="headImg !=null and headImg != ''">
+				and head_img = #{headImg}
+		   </if>
+	       <if test="cityCode !=null and cityCode != ''">
+				and city_code = #{cityCode}
+		   </if>
+	       <if test="bindTime !=null and bindTime != ''">
+				and bind_time = #{bindTime}
+		   </if>
+	       <if test="useStatus !=null and useStatus != ''">
+				and use_status = #{useStatus}
+		   </if>
+	       <if test="csWorkStatus !=null and csWorkStatus != ''">
+				and cs_work_status = #{csWorkStatus}
+		   </if>
+	       <if test="signStatus !=null and signStatus != ''">
+				and sign_status = #{signStatus}
+		   </if>
+	       <if test="createTime !=null and createTime != ''">
+				and create_time = #{createTime}
+		   </if>
+	       <if test="updateTime !=null and updateTime != ''">
+				and update_time = #{updateTime}
+		   </if>
+	       
+			<if test="statusList != null and statusList.size > 0">
+				and status in
+				<foreach item="item" collection="statusList" separator="," open="(" close=")" index="index">
+					#{item}
+				</foreach>
+			</if>
+			<if test="idList != null and idList.size > 0">
+				and id in
+				<foreach item="item" collection="idList" separator="," open="(" close=")" index="index">
+					#{item} 			
+				</foreach>
+			</if>
+
+
+
+			<if test="nameLike != null and nameLike != ''">
+				<![CDATA[ and name LIKE CONCAT('%', TRIM(#{nameLike}), '%')]]>
+			</if>
+
+			<if test="codeLike != null and codeLike != ''">
+				<![CDATA[ and code LIKE CONCAT('%', TRIM(#{codeLike}), '%')]]>
+			</if>
+		</where>
+	</sql>
+
+</mapper>
+
