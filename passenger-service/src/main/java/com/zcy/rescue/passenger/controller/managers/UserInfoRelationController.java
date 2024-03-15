@@ -15,7 +15,7 @@ import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dto.UserInfoRelationDto;
 import com.zcy.rescue.passenger.entity.UserInfoRelation;
-import com.zcy.rescue.passenger.enums.UserInfoRelationErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.UserInfoRelationErrorCodeEnum;
 import com.zcy.rescue.passenger.service.UserInfoRelationService;
 import com.zcy.rescue.passenger.vo.UserInfoRelationVO;
 import io.swagger.annotations.Api;

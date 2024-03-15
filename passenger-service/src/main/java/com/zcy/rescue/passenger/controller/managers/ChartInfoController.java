@@ -15,7 +15,7 @@ import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dto.ChartInfoDto;
 import com.zcy.rescue.passenger.entity.ChartInfo;
-import com.zcy.rescue.passenger.enums.ChartInfoErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.ChartInfoErrorCodeEnum;
 import com.zcy.rescue.passenger.service.ChartInfoService;
 import com.zcy.rescue.passenger.vo.ChartInfoVO;
 import io.swagger.annotations.Api;
