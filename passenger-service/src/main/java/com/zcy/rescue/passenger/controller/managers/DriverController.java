@@ -13,7 +13,7 @@ import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dto.DriverInfoDto;
 import com.zcy.rescue.passenger.entity.DriverInfo;
-import com.zcy.rescue.passenger.enums.DriverInfoErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.DriverInfoErrorCodeEnum;
 import com.zcy.rescue.passenger.service.DriverInfoService;
 import com.zcy.rescue.passenger.vo.DriverInfoVO;
 import io.swagger.annotations.Api;

@@ -4,7 +4,7 @@
  * Since 2019
  */
 
-package com.zcy.rescue.passenger.enums;
+package com.zcy.rescue.passenger.enums.error;
 
 import com.zcy.rescue.passenger.common.enums.ICommonEnum;
 

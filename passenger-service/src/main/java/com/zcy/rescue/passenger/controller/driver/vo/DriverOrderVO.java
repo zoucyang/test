@@ -42,19 +42,8 @@ public class DriverOrderVO implements Serializable {
 	 */
 	@ApiModelProperty(value = "司机id")
 	private Long driverId;
-	/**
-	 * 司机状态   
-		0：没有司机接单
-		1：司机接单
-		2.  去接乘客
-		3：司机到达上车点
-		4：开始行程
-		5：结束行程
-		6：发起收款
-		7：取消
-	 */
-	@ApiModelProperty(value = "司机状态 0：没有司机接单 1：司机接单 2.  去接乘客 3：司机到达上车点 4：开始行程 5：结束行程 6：发起收款 7：取消")
-	private Integer driverStatus;
+
+
 	/**
 	 * 司机电话
 	 */
@@ -138,7 +127,8 @@ public class DriverOrderVO implements Serializable {
 	 */
 	@ApiModelProperty(value = "订单状态 0: 订单预估 1：订单开始 2：司机接单 3：去接乘客 4：司机到达乘客起点 5：乘客上车，司机开始行程 6：到达目的地，行程结束，未支付 7：发起收款 8: 支付完成 9.乘客取消订单")
 	private Integer status;
-
+	@ApiModelProperty(value = "司机状态 0：没有司机接单 1：司机接单 2.  去接乘客 3：司机到达上车点 4：开始行程 5：结束行程 6：发起收款 7：取消")
+	private Integer driverStatus;
 
 	/**
 	 * 是否人工派单0 否 1 原来无司机, 人工派 2原来有司机，改派

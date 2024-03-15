@@ -13,7 +13,7 @@ import com.zcy.rescue.passenger.common.utils.DateUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dao.CarBrandMapper;
 import com.zcy.rescue.passenger.entity.CarBrand;
-import com.zcy.rescue.passenger.enums.CarBrandErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.CarBrandErrorCodeEnum;
 import com.zcy.rescue.passenger.service.CarBrandService;
 import com.zcy.rescue.passenger.vo.CarBrandVO;
 import org.slf4j.Logger;

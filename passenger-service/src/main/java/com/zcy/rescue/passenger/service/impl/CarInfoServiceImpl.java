@@ -13,7 +13,7 @@ import com.zcy.rescue.passenger.common.utils.DateUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dao.CarInfoMapper;
 import com.zcy.rescue.passenger.entity.CarInfo;
-import com.zcy.rescue.passenger.enums.CarInfoErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.CarInfoErrorCodeEnum;
 import com.zcy.rescue.passenger.service.CarInfoService;
 import com.zcy.rescue.passenger.vo.CarInfoVO;
 import org.slf4j.Logger;

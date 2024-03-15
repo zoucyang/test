@@ -48,14 +48,15 @@ public class PassengerOrderController {
 
 	@ApiOperation("乘客下单")
     @PostMapping(value="/save", produces="application/json")
-    public DataResult<com.zcy.rescue.passenger.vo.OrderVO> save(@RequestBody PassengerOrderVO orderVO) {
+    public DataResult<OrderDto> save(@RequestBody PassengerOrderVO orderVO) {
         logger.debug("乘客订单表的save order={}", JsonUtil.toJson(orderVO));
         Order order = new Order();
 		BeanUtil.copyProperties(orderVO, order);
+		order.setServiceType(1).setSource("1").setDriverStatus(0).setStatus(1);
         order = orderService.insertSelective(order);
         logger.debug("乘客订单表的save result={}",JsonUtil.toJson(order));
 		if(order != null){
-			com.zcy.rescue.passenger.vo.OrderVO orderDto = new com.zcy.rescue.passenger.vo.OrderVO();
+			OrderDto orderDto = new OrderDto();
 			BeanUtil.copyProperties(order, orderDto);
 			return DataResult.success(orderDto);
 		}

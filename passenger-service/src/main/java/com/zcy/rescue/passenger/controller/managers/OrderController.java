@@ -15,7 +15,7 @@ import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.controller.passenger.vo.PassengerOrderVO;
 import com.zcy.rescue.passenger.entity.Order;
-import com.zcy.rescue.passenger.enums.OrderErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.OrderErrorCodeEnum;
 import com.zcy.rescue.passenger.service.OrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

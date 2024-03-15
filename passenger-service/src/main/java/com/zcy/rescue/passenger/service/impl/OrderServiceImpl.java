@@ -13,7 +13,7 @@ import com.zcy.rescue.passenger.common.utils.DateUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dao.OrderMapper;
 import com.zcy.rescue.passenger.entity.Order;
-import com.zcy.rescue.passenger.enums.OrderErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.OrderErrorCodeEnum;
 import com.zcy.rescue.passenger.service.OrderService;
 import com.zcy.rescue.passenger.vo.OrderVO;
 import org.slf4j.Logger;

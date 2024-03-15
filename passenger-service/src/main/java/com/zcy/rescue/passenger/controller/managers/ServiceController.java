@@ -15,7 +15,7 @@ import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dto.ServiceDto;
 import com.zcy.rescue.passenger.entity.ServiceProject;
-import com.zcy.rescue.passenger.enums.ServiceErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.ServiceErrorCodeEnum;
 import com.zcy.rescue.passenger.service.ServiceService;
 import com.zcy.rescue.passenger.vo.ServiceVO;
 import io.swagger.annotations.Api;

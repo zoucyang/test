@@ -13,7 +13,7 @@ import com.zcy.rescue.passenger.common.utils.DateUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dao.ServiceMapper;
 import com.zcy.rescue.passenger.entity.ServiceProject;
-import com.zcy.rescue.passenger.enums.ServiceErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.ServiceErrorCodeEnum;
 import com.zcy.rescue.passenger.service.ServiceService;
 import com.zcy.rescue.passenger.vo.ServiceVO;
 import org.slf4j.Logger;

@@ -15,7 +15,7 @@ import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dto.SysUserDto;
 import com.zcy.rescue.passenger.entity.SysUser;
-import com.zcy.rescue.passenger.enums.SysUserErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.SysUserErrorCodeEnum;
 import com.zcy.rescue.passenger.service.SysUserService;
 import com.zcy.rescue.passenger.vo.SysUserVO;
 import io.swagger.annotations.Api;

@@ -15,7 +15,7 @@ import com.zcy.rescue.passenger.common.utils.BeanUtil;
 import com.zcy.rescue.passenger.common.utils.JsonUtil;
 import com.zcy.rescue.passenger.dto.CarInfoDto;
 import com.zcy.rescue.passenger.entity.CarInfo;
-import com.zcy.rescue.passenger.enums.CarInfoErrorCodeEnum;
+import com.zcy.rescue.passenger.enums.error.CarInfoErrorCodeEnum;
 import com.zcy.rescue.passenger.service.CarInfoService;
 import com.zcy.rescue.passenger.vo.CarInfoVO; 
 import io.swagger.annotations.Api;
