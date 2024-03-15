@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG" >
+	<Properties>
+		<Property name="base.dir">/data/logs/${project.artifactId}</Property>
+		<Property name="pattern">T:%d{yyyy-MM-dd HH:mm:ss.SSS}|Z:%X{traceId}|IP:%X{serverIP}|L:%highlight{%-5level}|%highlight{C:%c{2}}|%M(%L)|%m%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}" />
+		</Console>
+		<!-- auditTrail -->
+		<RollingFile name="auditTrailAppender" fileName="${base.dir}/auditTrail.log"
+			filePattern="${base.dir}/auditTrail.log.%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+				<SizeBasedTriggeringPolicy size="1024 MB" />
+			</Policies>
+		</RollingFile>
+		<!-- info日志 -->
+		<RollingFile name="infoAppender" fileName="${base.dir}/info.log" filePattern="${base.dir}/info_.%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Filters>
+				<ThresholdFilter level="INFO"/>
+				<ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+			</Filters>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1024 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+		<!-- debugAppender -->
+		<RollingFile name="debugAppender" fileName="${base.dir}/debug.log" filePattern="${base.dir}/debug_.%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Filters>
+				<ThresholdFilter level="DEBUG"/>
+				<ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="WARN" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+			</Filters>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1024 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+		<!-- 错误日志 -->
+		<RollingFile name="errorAppender" fileName="${base.dir}/error.log" filePattern="${base.dir}/error_.%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1024 MB" />
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+			<Filters>
+				<ThresholdFilter level="ERROR"/>
+			</Filters>
+		</RollingFile>
+		<!-- root日志 -->
+		<RollingFile name="rootAppender" fileName="${base.dir}/root.log"  filePattern="${base.dir}/root_.%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>${pattern}</pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="1G" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+		<!-- -->
+		<logger name="org.springframework" level="WARN"><AppenderRef ref="errorAppender" /></logger>
+		<logger name="org.springframework.boot" level="WARN"><AppenderRef ref="errorAppender" /></logger>
+		<logger name="org.springframework.cloud" level="WARN"><AppenderRef ref="errorAppender" /></logger>
+		<logger name="org.mybatis" level="INFO"><AppenderRef ref="infoAppender" /></logger>
+		<logger name="org.apache" level="ERROR"><AppenderRef ref="errorAppender" /></logger>
+		<logger name="com.netflix" level="ERROR"><AppenderRef ref="errorAppender" /></logger>
+		<logger name="org.hibernate" level="ERROR"><AppenderRef ref="errorAppender" /></logger>
+		<logger name="com.yestae" level="INFO"></logger>
+		<logger name="com.zaxxer.hikari" level="INFO"></logger>
+		<logger name="com.alibaba.druid" level="INFO"></logger>
+		<logger name="com.alibaba.nacos" level="INFO"></logger>
+		<logger name="com.ctrip.framework.apollo" level="WARN"></logger>
+		<logger name="springfox.documentation" level="WARN"></logger>
+		<logger name=" com.yestae.mall.salespromotion" level="DEBUG"></logger>
+		<!-- default log -->
+		<Root level="DEBUG">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="debugAppender" />
+			<AppenderRef ref="infoAppender" />
+			<AppenderRef ref="errorAppender"/>
+			<AppenderRef ref="rootAppender"/>
+		</Root>
+		<!-- sql语句打印日志，trace级别会打印出查询结果，debug级别只会打印查询sql和查询条件，不会打印具体查询结果，正式环境替换成info或error级别 -->
+		<logger name="com.yestae.order.aftersales.dao" level="trace" additivity="false">
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="infoAppender" />
+			<AppenderRef ref="debugAppender" />
+			<AppenderRef ref="rootAppender"/>
+		</logger>
+	</Loggers>
+</Configuration>
